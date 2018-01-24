@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "declaration": true,
+    "module": "commonjs",
+    "jsx": "react",
+    "sourceMap": true,
+    "importHelpers": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+    }
+  },
+  "include": [
+    "examples/**/*ts",
+    "examples/**/*tsx",
+    "src/**/*ts",
+    "src/**/*tsx"
+  ]
+}

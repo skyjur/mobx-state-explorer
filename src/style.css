@@ -1,0 +1,38 @@
+.mobx-explorer {
+    font-family: monospace;
+    font-size: 8pt;
+}
+
+.mobx-explorer--key-value {
+    padding: 0 0 0 10px;
+}
+
+.mobx-explorer--decorator {
+    color: gray;
+    font-size: 7pt;
+}
+
+.mobx-explorer--label {
+    font-weight: bold;
+}
+
+.mobx-explorer--type-label {
+    font-style: italic;
+    color: blue;
+}
+
+.mobx-explorer--value {
+    color: red;
+}
+
+.mobx-explorer--value[contenteditable=true] {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAMAAABhq6zVAAAANlBMVEUAAAAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlDmJ9nfAAAAEXRSTlMAExlAaGlreYWIiZGStNrt8RjzOw8AAABDSURBVAhbTcoxAoAgEMTACCgnqLD//6wFHpJqisBXOlyQpdMdQ5f2YbstdKXhWmUhT0txsQ1fi8szjdiaG4ni5n/gBdsTAwioKe1tAAAAAElFTkSuQmCC);
+    background-repeat: no-repeat;
+    padding: 0 0 0 15px;
+    margin: 0 5px 0 5px;
+}
+
+.mobx-explorer--value[contenteditable=true]:focus {
+    outline: 1px solid red;
+    outline-offset: 3px;
+}
