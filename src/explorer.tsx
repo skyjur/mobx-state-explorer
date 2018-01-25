@@ -2,30 +2,26 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {observer} from 'mobx-react';
 
-export function expose<T>(obj: T, keys: Array<keyof T>) {
-    (obj as any).$expose = keys;
-    return obj;
-}
-
 export class MobxExplorer extends React.Component<{obj: any}> {
     render() {
-        let trackedIds : Set<string> = new Set;
         return <div className="mobx-explorer">
-            <AnyObjView obj={this.props.obj} trackedIds={trackedIds} />
+            <AnyObjView obj={this.props.obj} trackedIds={[]} />
         </div>
     }
 }
 
 @observer
-class AnyObjView extends React.Component<{obj: any, trackedIds: Set<string>}> {
+class AnyObjView extends React.Component<{obj: any, trackedIds: Array<string>}> {
     render() : any {
         let {obj, trackedIds} = this.props;
         let objId = objectId(obj);
         
-        if(isObject(obj) && trackedIds.has(objId)) {
+        if(isObject(obj) && trackedIds.indexOf(objId) !== -1) {
             return `[recursion ${typeName(obj)}]`
         };
-        trackedIds.add(objId);
+        
+        trackedIds = [... trackedIds, objId];
+
         return isArray(obj) ?
                 <ArrayView obj={obj} trackedIds={trackedIds} />
             : isObject(obj) && getObjectKeys(obj).length > 0 ?
@@ -36,7 +32,7 @@ class AnyObjView extends React.Component<{obj: any, trackedIds: Set<string>}> {
 }
 
 @observer
-class ArrayView extends React.Component<{obj: any, trackedIds: Set<string>}> {
+class ArrayView extends React.Component<{obj: any, trackedIds: Array<string>}> {
     render() {
         let {obj} = this.props;
         return <>
@@ -52,11 +48,11 @@ class ArrayView extends React.Component<{obj: any, trackedIds: Set<string>}> {
 }
 
 @observer
-class ObjectView extends React.Component<{obj: any, trackedIds: Set<string>}> {
+class ObjectView extends React.Component<{obj: any, trackedIds: Array<string>}> {
     render() : any {
         let {obj} = this.props;
         return <>
-            <span className="mobx-explorer--type-label">{` [${typeName(obj)}] `}</span>
+            {typeLabel(typeName(obj))}
             {'{'}
             <div className="mobx-explorer--object">
                 {getObjectKeys(obj).map(key => <div className="mobx-explorer--key-value" key={key}>
@@ -74,7 +70,7 @@ class ObjectView extends React.Component<{obj: any, trackedIds: Set<string>}> {
 }
 
 @observer
-class ObjectValueView extends React.Component<{keyName: string, obj: any, trackedIds: Set<string>}> {
+class ObjectValueView extends React.Component<{keyName: string, obj: any, trackedIds: Array<string>}> {
     render() {
         let {keyName, obj} = this.props;
         let value = obj[keyName];
@@ -216,7 +212,6 @@ function isEditable(obj: any, key: string) {
 
 function getObjectKeys(obj: any) : string[] {
     if(!obj) return [];
-    if(obj && obj.$expose) { return obj.$expose };
     let keys = Array.from(new Set([
         ... Object.keys(obj),
         ... Object.getOwnPropertyNames(obj),
@@ -230,6 +225,10 @@ function getObjectKeys(obj: any) : string[] {
 
 function typeName(obj: any) : string {
     return obj && obj.constructor && obj.constructor.name || typeof obj;
+}
+
+function typeLabel(typeName: string) {
+    return typeName !== 'Object' ? <span className="mobx-explorer--type-label">{` [${typeName}] `}</span> : null;
 }
 
 var __next_objid=1;

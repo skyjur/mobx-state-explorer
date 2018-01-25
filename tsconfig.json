@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "declaration": true,
+    "target": "es6",
     "module": "commonjs",
     "jsx": "react",
     "sourceMap": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "strict": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -14,6 +13,7 @@
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
+      "mobx-state-explorer": ["./src"]
     }
   },
   "include": [

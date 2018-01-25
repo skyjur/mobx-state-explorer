@@ -1,19 +1,17 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import {observable, computed, action} from 'mobx';
-import {MobxExplorer, expose} from '../src/explorer';
+import {observable, computed, action} from 'mobx'
+import explore from 'mobx-state-explorer';
 
 type TodoItem = {
     text: string;
     finished: boolean;
 }
 
-export class TodoList {
+class TodoList {
     @observable todos : TodoRow[] = [
         new TodoRow({text: '123', finished: false}, this)
     ];
     @computed get unfinishedTodoCount() {
-        return this.todos.filter(row => !row.obj.finished).length;
+        return this.todos.filter(row => !row.todo.finished).length;
     };
     @observable form ?: TodoForm;
 
@@ -24,19 +22,19 @@ export class TodoList {
     }
 }
 
-export class TodoRow {
-    @observable obj : TodoItem;
+class TodoRow {
+    todo : TodoItem;
 
-    constructor(obj: TodoItem, private list: TodoList) {
-        this.obj = obj;
+    constructor(todo: TodoItem, private list: TodoList) {
+        this.todo = todo;
     }
 
     @action delete() {
-        this.list.todos = this.list.todos.filter(row => row.obj !== this.obj)
+        this.list.todos = this.list.todos.filter(row => row.todo !== this.todo)
     }
 }
 
-export class TodoForm {
+class TodoForm {
     @observable text = '';
     @observable finished = false;
 
@@ -50,8 +48,5 @@ export class TodoForm {
 if(window) {
     let todo = new TodoList;
     (window as any).todo=todo;
-    ReactDOM.render(
-        <MobxExplorer obj={todo} />,
-        document.getElementById('reactRoot')
-    );
+    explore(todo);
 }
