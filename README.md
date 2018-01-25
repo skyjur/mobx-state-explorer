@@ -1,5 +1,9 @@
 # Interactive mobx state exploration
 
+Explore, modify and call action functions on any mobx data models. Maybe useful for:
+- Debugging
+- Displaying/interacting with state model without having views implementation
+
 [![](./example.gif)](https://skyjur.github.io/mobx-state-explorer/dist/examples/todoList.html)
 
 Usage example:
