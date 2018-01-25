@@ -1,7 +1,7 @@
 module.exports = {
     entry: {
         "mobxStateExplorer": ["./src/style-autoload.ts", "./src/index.ts"],
-        "examples/todoList": ["./examples/todoList.tsx"]
+        "examples/todoList": ["./examples/todoList/index.ts"]
     },
     output: {
         filename: "[name].js",

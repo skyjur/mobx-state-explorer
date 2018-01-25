@@ -7,7 +7,7 @@
 		exports["mobxStateExplorer"] = factory(require("React"), require("ReactDOM"), require("mobxReact"));
 	else
 		root["mobxStateExplorer"] = factory(root["React"], root["ReactDOM"], root["mobxReact"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_7__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -81,30 +81,23 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-__webpack_require__(2);
-module.exports = __webpack_require__(4);
-
+module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-let css = __webpack_require__(3);
-let style = document.createElement('style');
-style.type = 'text/css';
-style.appendChild(document.createTextNode(css));
-document.body.appendChild(style);
-
+module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = ".mobx-explorer {\n    font-family: monospace;\n    font-size: 8pt;\n}\n\n.mobx-explorer--key-value {\n    padding: 0 0 0 10px;\n}\n\n.mobx-explorer--decorator {\n    color: gray;\n    font-size: 7pt;\n}\n\n.mobx-explorer--label {\n    font-weight: bold;\n}\n\n.mobx-explorer--type-label {\n    font-style: italic;\n    color: blue;\n}\n\n.mobx-explorer--value {\n    color: red;\n}\n\n.mobx-explorer--value[contenteditable=true] {\n    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAMAAABhq6zVAAAANlBMVEUAAAAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlDmJ9nfAAAAEXRSTlMAExlAaGlreYWIiZGStNrt8RjzOw8AAABDSURBVAhbTcoxAoAgEMTACCgnqLD//6wFHpJqisBXOlyQpdMdQ5f2YbstdKXhWmUhT0txsQ1fi8szjdiaG4ni5n/gBdsTAwioKe1tAAAAAElFTkSuQmCC);\n    background-repeat: no-repeat;\n    padding: 0 0 0 15px;\n    margin: 0 5px 0 5px;\n}\n\n.mobx-explorer--value[contenteditable=true]:focus {\n    outline: 1px solid red;\n    outline-offset: 3px;\n}"
+__webpack_require__(4);
+module.exports = __webpack_require__(6);
+
 
 /***/ }),
 /* 4 */
@@ -112,10 +105,29 @@ module.exports = ".mobx-explorer {\n    font-family: monospace;\n    font-size: 
 
 "use strict";
 
+let css = __webpack_require__(5);
+let style = document.createElement('style');
+style.type = 'text/css';
+style.appendChild(document.createTextNode(css));
+document.body.appendChild(style);
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = "body.mobx-explorer--is-open {\n    margin-left: 400px;\n}\n\n.mobx-explorer {\n    font-family: monospace;\n    font-size: 8pt;\n    background: #f5f5f5;\n    border: 2px #eee solid;\n    position: fixed;\n    top: 0px;\n    left: 0px;\n}\n    .mobx-explorer.mobx-explorer--is-open {\n        width: 400px;\n        height: 100%;\n        overflow-y: scroll;\n    }\n\n.mobx-explorer--header {\n    text-align: center;\n    font-size: 7pt;\n}\n\n.mobx-explorer--content {\n    padding: 5px;\n}\n\n.mobx-explorer--key-value {\n    padding: 0 0 0 10px;\n}\n\n.mobx-explorer--decorator {\n    color: gray;\n    font-size: 7pt;\n}\n\n.mobx-explorer--label {\n    font-weight: bold;\n}\n\n.mobx-explorer--type-label {\n    font-style: italic;\n    color: blue;\n}\n\n.mobx-explorer--value {\n    color: red;\n}\n\n.mobx-explorer--value[contenteditable=true] {\n    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAMAAABhq6zVAAAANlBMVEUAAAAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlAsPlDmJ9nfAAAAEXRSTlMAExlAaGlreYWIiZGStNrt8RjzOw8AAABDSURBVAhbTcoxAoAgEMTACCgnqLD//6wFHpJqisBXOlyQpdMdQ5f2YbstdKXhWmUhT0txsQ1fi8szjdiaG4ni5n/gBdsTAwioKe1tAAAAAElFTkSuQmCC);\n    background-repeat: no-repeat;\n    padding: 0 0 0 15px;\n    margin: 0 5px 0 5px;\n}\n\n.mobx-explorer--value[contenteditable=true]:focus {\n    outline: 1px solid red;\n    outline-offset: 3px;\n}"
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(0);
-const ReactDOM = __webpack_require__(5);
-const explorer_1 = __webpack_require__(6);
+const ReactDOM = __webpack_require__(1);
+const explorer_1 = __webpack_require__(7);
 function explore(obj, container) {
     if (!container) {
         container = document.createElement('div');
@@ -127,13 +139,7 @@ exports.default = explore;
 
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
-
-/***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -146,11 +152,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(0);
-const mobx_react_1 = __webpack_require__(7);
+const mobx_react_1 = __webpack_require__(2);
+;
 class MobxExplorer extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.state = {
+            minimized: false,
+        };
+        this.toggleMinMax = () => { this.setState({ minimized: !this.state.minimized }); };
+    }
     render() {
-        return React.createElement("div", { className: "mobx-explorer" },
-            React.createElement(AnyObjView, { obj: this.props.obj, trackedIds: [] }));
+        let { minimized } = this.state;
+        let className = minimized ? 'mobx-explorer--is-closed' : 'mobx-explorer--is-open';
+        if (document) {
+            document.body.classList.remove('mobx-explorer--is-open');
+            document.body.classList.remove('mobx-explorer--is-closed');
+            document.body.classList.add(className);
+        }
+        return React.createElement("div", { className: "mobx-explorer " + className },
+            React.createElement("div", { className: "mobx-explorer--header" },
+                React.createElement("strong", null, "state explorer"),
+                ' ',
+                React.createElement("a", { href: "javascript:void(0)", onClick: this.toggleMinMax }, "[+/-]")),
+            !minimized ? React.createElement("div", { className: "mobx-explorer--content" },
+                React.createElement(AnyObjView, { obj: this.props.obj, trackedIds: [] })) : null);
     }
 }
 exports.MobxExplorer = MobxExplorer;
@@ -378,12 +404,6 @@ function objectId(obj) {
     return 'id:' + obj.__obj_id.toString();
 }
 
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
 
 /***/ })
 /******/ ]);

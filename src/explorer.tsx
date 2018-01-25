@@ -2,12 +2,39 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {observer} from 'mobx-react';
 
-export class MobxExplorer extends React.Component<{obj: any}> {
+
+interface State {
+    minimized: boolean
+};
+
+export class MobxExplorer extends React.Component<{obj: any}, State> {
+    state: State = {
+        minimized: false,
+    };
+
     render() {
-        return <div className="mobx-explorer">
-            <AnyObjView obj={this.props.obj} trackedIds={[]} />
+        let {minimized} = this.state;
+
+        let className = minimized ? 'mobx-explorer--is-closed' : 'mobx-explorer--is-open';
+        
+        if(document) {
+            document.body.classList.remove('mobx-explorer--is-open');
+            document.body.classList.remove('mobx-explorer--is-closed');
+            document.body.classList.add(className);
+        }
+
+        return <div className={"mobx-explorer " + className}>
+            <div className="mobx-explorer--header">
+                <strong>state explorer</strong>{' '}
+                <a href="javascript:void(0)" onClick={this.toggleMinMax}>[+/-]</a>
+            </div>
+            {!minimized ? <div className="mobx-explorer--content">
+                <AnyObjView obj={this.props.obj} trackedIds={[]} /> 
+            </div> : null }
         </div>
     }
+
+    toggleMinMax = () => {this.setState({minimized: !this.state.minimized});}
 }
 
 @observer
