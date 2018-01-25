@@ -1,4 +1,4 @@
-# Interactive mobx state exploration
+# Experiment: interactive mobx state exploration
 
 Explore, modify and call action functions on any mobx data models. Maybe useful for:
 - Debugging
