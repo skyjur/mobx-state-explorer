@@ -49,12 +49,18 @@ class AnyObjView extends React.Component<{obj: any, trackedIds: Array<string>}> 
         
         trackedIds = [... trackedIds, objId];
 
-        return isArray(obj) ?
-                <ArrayView obj={obj} trackedIds={trackedIds} />
-            : isObject(obj) && getObjectKeys(obj).length > 0 ?
-                <ObjectView obj={obj} trackedIds={trackedIds} />
-            :
-                <PlainValue obj={obj} />
+        try {
+            return isArray(obj) ?
+                    <ArrayView obj={obj} trackedIds={trackedIds} />
+                : isObject(obj) && getObjectKeys(obj).length > 0 ?
+                    <ObjectView obj={obj} trackedIds={trackedIds} />
+                :
+                    <PlainValue obj={obj} />
+        } catch(e) {
+            console.trace(e);
+            console.log(e.stack);
+            return '[error]'
+        }
     }
 }
 
