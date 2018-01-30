@@ -189,12 +189,19 @@ let AnyObjView = class AnyObjView extends React.Component {
         }
         ;
         trackedIds = [...trackedIds, objId];
-        return isArray(obj) ?
-            React.createElement(ArrayView, { obj: obj, trackedIds: trackedIds })
-            : isObject(obj) && getObjectKeys(obj).length > 0 ?
-                React.createElement(ObjectView, { obj: obj, trackedIds: trackedIds })
-                :
-                    React.createElement(PlainValue, { obj: obj });
+        try {
+            return isArray(obj) ?
+                React.createElement(ArrayView, { obj: obj, trackedIds: trackedIds })
+                : isObject(obj) && getObjectKeys(obj).length > 0 ?
+                    React.createElement(ObjectView, { obj: obj, trackedIds: trackedIds })
+                    :
+                        React.createElement(PlainValue, { obj: obj });
+        }
+        catch (e) {
+            console.trace(e);
+            console.log(e.stack);
+            return '[error]';
+        }
     }
 };
 AnyObjView = __decorate([
@@ -346,7 +353,7 @@ function label(label, decorator = '', col = ':') {
             " "));
 }
 function isArray(obj) {
-    return obj && obj.map && obj.forEach ? true : false;
+    return obj && (obj instanceof Array) ? true : false;
 }
 function isObject(obj) {
     return obj && typeof obj === 'object';
