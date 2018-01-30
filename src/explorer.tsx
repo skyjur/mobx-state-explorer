@@ -205,7 +205,7 @@ function label(label: string, decorator: string = '', col: any = ':') {
 }
 
 function isArray(obj: any) {
-    return obj && obj.map && obj.forEach ? true : false
+    return obj && (obj instanceof Array) ? true : false
 }
 
 function isObject(obj: any) {
