@@ -266,9 +266,9 @@ function typeLabel(typeName: string) {
 
 var __next_objid=1;
 function objectId(obj: any) : string {
-    if(typeof obj === 'string') return obj;
-    if(typeof obj === 'number') return ':' + obj.toString();
-    if(!obj) return `:${obj}:`;
+    if(obj === null || (typeof obj !== 'object' && typeof obj != 'function')) {
+        return `:${obj}`;
+    }
     if(!(obj.__obj_id)) obj.__obj_id=__next_objid++;
     return 'id:' + obj.__obj_id.toString();
 }
